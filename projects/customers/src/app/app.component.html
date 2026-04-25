@@ -1,0 +1,48 @@
+<section class="grid gap-6">
+  <ui-panel>
+  <ui-page-header
+    kicker="Customers remote"
+    title="Customer profiles"
+    description="This screen is served by the independent customers Angular application and loaded into the shell at runtime."
+    statusLabel="Remote: 4203"
+    statusTone="warning"
+  />
+  </ui-panel>
+
+  <div class="grid gap-4 md:grid-cols-3">
+    <ui-metric-card value="830" label="Accounts" helper="Known customer records" tone="cyan" />
+    <ui-metric-card value="42" label="At risk" helper="Needs follow up" tone="rose" />
+    <ui-metric-card value="71" label="New this month" helper="Fresh acquisitions" tone="emerald" />
+  </div>
+
+  <div>
+    <ui-toolbar title="Customer operations" description="Shared controls for profiles, consent, and segmentation.">
+      <ui-button>Add account</ui-button>
+      <ui-button tone="ghost">Import CSV</ui-button>
+      <ui-button tone="ghost">Refresh</ui-button>
+    </ui-toolbar>
+  </div>
+
+  <div>
+    <ui-data-table [columns]="columns" [rows]="rows" emptyMessage="No customer records found." />
+  </div>
+
+  <div class="grid gap-4 lg:grid-cols-[1fr_320px]">
+    <ui-panel title="Realtime activity" description="Customer-domain changes ready for live stream integration.">
+      <ul class="grid gap-3">
+        <li *ngFor="let activity of activities" class="flex items-center justify-between gap-3 rounded-lg border border-slate-200 p-3 text-sm text-slate-700">
+          <span>{{ activity }}</span>
+          <ui-status-badge label="Live" tone="success" />
+        </li>
+      </ul>
+    </ui-panel>
+
+    <ui-panel title="Production checks" description="CRM readiness signals.">
+      <div class="grid gap-2">
+        <ui-status-badge label="PII masking: enabled" tone="success" />
+        <ui-status-badge label="Consent audit: enabled" tone="info" />
+        <ui-status-badge label="Exports: restricted" tone="neutral" />
+      </div>
+    </ui-panel>
+  </div>
+</section>

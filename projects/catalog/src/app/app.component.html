@@ -1,0 +1,48 @@
+<section class="grid gap-6">
+  <ui-panel>
+  <ui-page-header
+    kicker="Catalog remote"
+    title="Product inventory"
+    description="This screen is served by the independent catalog Angular application and loaded into the shell at runtime."
+    statusLabel="Remote: 4202"
+    statusTone="info"
+  />
+  </ui-panel>
+
+  <div class="grid gap-4 md:grid-cols-3">
+    <ui-metric-card value="128" label="Products" helper="Active sellable items" tone="cyan" />
+    <ui-metric-card value="14" label="Low stock" helper="Needs replenishment" tone="amber" />
+    <ui-metric-card value="3" label="New releases" helper="Published this week" tone="emerald" />
+  </div>
+
+  <div>
+    <ui-toolbar title="Catalog operations" description="Shared controls for inventory and product publishing.">
+      <ui-button>Add product</ui-button>
+      <ui-button tone="ghost">Sync prices</ui-button>
+      <ui-button tone="ghost">Refresh</ui-button>
+    </ui-toolbar>
+  </div>
+
+  <div>
+    <ui-data-table [columns]="columns" [rows]="rows" emptyMessage="No products are available." />
+  </div>
+
+  <div class="grid gap-4 lg:grid-cols-[1fr_320px]">
+    <ui-panel title="Realtime activity" description="Inventory events owned by the catalog remote.">
+      <ul class="grid gap-3">
+        <li *ngFor="let activity of activities" class="flex items-center justify-between gap-3 rounded-lg border border-slate-200 p-3 text-sm text-slate-700">
+          <span>{{ activity }}</span>
+          <ui-status-badge label="Live" tone="success" />
+        </li>
+      </ul>
+    </ui-panel>
+
+    <ui-panel title="Production checks" description="Catalog readiness signals.">
+      <div class="grid gap-2">
+        <ui-status-badge label="Cache: warmed" tone="success" />
+        <ui-status-badge label="Pricing API: online" tone="info" />
+        <ui-status-badge label="Image CDN: healthy" tone="neutral" />
+      </div>
+    </ui-panel>
+  </div>
+</section>

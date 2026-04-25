@@ -1,0 +1,48 @@
+<section class="grid gap-6">
+  <ui-panel>
+  <ui-page-header
+    kicker="Billing remote"
+    title="Invoices and payments"
+    description="This screen is served by the independent billing Angular application and loaded into the shell at runtime."
+    statusLabel="Remote: 4204"
+    statusTone="danger"
+  />
+  </ui-panel>
+
+  <div class="grid gap-4 md:grid-cols-3">
+    <ui-metric-card value="12" label="Due invoices" helper="Past expected payment date" tone="amber" />
+    <ui-metric-card value="4" label="Failed payments" helper="Needs retry workflow" tone="rose" />
+    <ui-metric-card value="INR 8.2L" label="Collected" helper="Month to date" tone="emerald" />
+  </div>
+
+  <div>
+    <ui-toolbar title="Billing operations" description="Shared controls for collections and payment workflows.">
+      <ui-button>Create invoice</ui-button>
+      <ui-button tone="ghost">Run retries</ui-button>
+      <ui-button tone="ghost">Refresh</ui-button>
+    </ui-toolbar>
+  </div>
+
+  <div>
+    <ui-data-table [columns]="columns" [rows]="rows" emptyMessage="No invoice records found." />
+  </div>
+
+  <div class="grid gap-4 lg:grid-cols-[1fr_320px]">
+    <ui-panel title="Realtime activity" description="Payment events ready for live notification and reconciliation.">
+      <ul class="grid gap-3">
+        <li *ngFor="let activity of activities" class="flex items-center justify-between gap-3 rounded-lg border border-slate-200 p-3 text-sm text-slate-700">
+          <span>{{ activity }}</span>
+          <ui-status-badge label="Live" tone="success" />
+        </li>
+      </ul>
+    </ui-panel>
+
+    <ui-panel title="Production checks" description="Finance readiness signals.">
+      <div class="grid gap-2">
+        <ui-status-badge label="PCI boundary: isolated" tone="success" />
+        <ui-status-badge label="Retries: enabled" tone="info" />
+        <ui-status-badge label="Ledger sync: active" tone="neutral" />
+      </div>
+    </ui-panel>
+  </div>
+</section>

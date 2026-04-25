@@ -1,0 +1,48 @@
+<section class="grid gap-6">
+  <ui-panel>
+  <ui-page-header
+    kicker="Orders remote"
+    title="Order orchestration"
+    description="This screen is served by the independent orders Angular application and loaded into the shell at runtime."
+    statusLabel="Remote: 4201"
+    statusTone="success"
+  />
+  </ui-panel>
+
+  <div class="grid gap-4 md:grid-cols-3">
+    <ui-metric-card value="18" label="Open orders" helper="Needs warehouse action" tone="cyan" />
+    <ui-metric-card value="7" label="Ready to ship" helper="Awaiting pickup" tone="emerald" />
+    <ui-metric-card value="96%" label="SLA health" helper="Rolling 24 hour score" tone="violet" />
+  </div>
+
+  <div>
+    <ui-toolbar title="Order operations" description="Common command surface for this remote. Wire these actions to real APIs later.">
+      <ui-button>Create order</ui-button>
+      <ui-button tone="ghost">Export</ui-button>
+      <ui-button tone="ghost">Refresh</ui-button>
+    </ui-toolbar>
+  </div>
+
+  <div>
+    <ui-data-table [columns]="columns" [rows]="rows" emptyMessage="No orders are currently queued." />
+  </div>
+
+  <div class="grid gap-4 lg:grid-cols-[1fr_320px]">
+    <ui-panel title="Realtime activity" description="Latest domain events received by this remote.">
+      <ul class="grid gap-3">
+        <li *ngFor="let activity of activities" class="flex items-center justify-between gap-3 rounded-lg border border-slate-200 p-3 text-sm text-slate-700">
+          <span>{{ activity }}</span>
+          <ui-status-badge label="Live" tone="success" />
+        </li>
+      </ul>
+    </ui-panel>
+
+    <ui-panel title="Production checks" description="Operational readiness signals.">
+      <div class="grid gap-2">
+        <ui-status-badge label="API contract: versioned" tone="success" />
+        <ui-status-badge label="Retries: configured" tone="info" />
+        <ui-status-badge label="Audit trail: enabled" tone="neutral" />
+      </div>
+    </ui-panel>
+  </div>
+</section>

@@ -1,0 +1,6 @@
+{
+  "orders": "http://localhost:4201/remoteEntry.json",
+  "catalog": "http://localhost:4202/remoteEntry.json",
+  "customers": "http://localhost:4203/remoteEntry.json",
+  "billing": "http://localhost:4204/remoteEntry.json"
+}
